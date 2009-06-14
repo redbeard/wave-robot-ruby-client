@@ -38,10 +38,9 @@ class TestHelpers < Test::Unit::TestCase
   def testSerializeContextSansOps()
     context, _ = AbstractRobot.parse_json(JSON(DEBUG_DATA))
     serialized = AbstractRobot.serialize_context(context)
-    assert_equal(
-        '{"operations":{"list":[],"javaClass":"java.util.ArrayList"},' +
-        '"javaClass":"com.google.wave.api.impl.OperationMessageBundle"}',
-        serialized)
+    expected = '{"operations":{"list":[],"javaClass":"java.util.ArrayList"},' +
+    '"javaClass":"com.google.wave.api.impl.OperationMessageBundle"}';
+    assert_equal(JSON(expected), JSON(serialized))
   end
 
   def testSerializeContextWithOps()
