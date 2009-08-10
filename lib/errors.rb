@@ -1,4 +1,4 @@
-#!/usr/bin/python2.4
+#!/usr/bin/ruby
 #
 # Copyright 2009 Google Inc. All Rights Reserved.
 
@@ -10,6 +10,7 @@ the library back to the client.
 
 __author__ = 'davidbyttow@google.com (David Byttow)'
 
-
-class Error(Exception):
+class Error < Exception
   """Base library error type."""
+  
+end

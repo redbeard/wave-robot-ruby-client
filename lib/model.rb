@@ -276,7 +276,7 @@ module Model
   def self.CreateEvent(data)
     """Construct event data from the raw incoming wire protocol."""
     event = Event.new()
-    event.type = data['type']
+    event.type = data['type'].downcase
     event.timestamp = data['timestamp']
     event.modified_by = data['modifiedBy']
     event.properties = data['properties'] or {}

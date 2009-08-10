@@ -82,7 +82,7 @@ class TestWaveModel < Test::Unit::TestCase
   end
 
   def testCreateEvent()
-    data = {'type' => 'WAVELET_PARTICIPANTS_CHANGED',
+    data = {'type' => 'wavelet_participants_changed',
             'properties' => {'blipId' => 'blip-1'},
             'timestamp' => 123,
             'modifiedBy' => 'modifier@google.com'}

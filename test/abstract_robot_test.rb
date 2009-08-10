@@ -29,7 +29,7 @@ class TestHelpers < Test::Unit::TestCase
 
     assert_equal(1, events.length)
     event = events[0]
-    assert_equal('WAVELET_PARTICIPANTS_CHANGED', event.type)
+    assert_equal('wavelet_participants_changed', event.type)
     assert_equal({'participantsRemoved' => [],
                       'participantsAdded' => ['monty@appspot.com']},
                      event.properties)
@@ -72,6 +72,7 @@ class TestGetCapabilitiesXml < Test::Unit::TestCase
     expected = (
         "<?xml version=\"1.0\"?>\n" +
         "<w:robot xmlns:w=\"http://wave.google.com/extensions/robots/1.0\">\n" +
+        "<w:version>1</w:version>\n" +
         "<w:capabilities>\n</w:capabilities>\n" +
         "<w:profile name=\"Testy\"/>\n" +
         "</w:robot>\n")
@@ -88,6 +89,7 @@ class TestGetCapabilitiesXml < Test::Unit::TestCase
     expected = (
         "<?xml version=\"1.0\"?>\n" +
         "<w:robot xmlns:w=\"http://wave.google.com/extensions/robots/1.0\">\n" +
+        "<w:version>1</w:version>\n" +
         "<w:capabilities>\n</w:capabilities>\n" +
         "<w:profile name=\"Testy\"" +
         " imageurl=\"http://example.com/image.png\"" +
@@ -100,12 +102,13 @@ class TestGetCapabilitiesXml < Test::Unit::TestCase
   def testCapsAndEvents()
     #@robot.RegisterHandler('myevent', nil)
     AbstractRobot.send('class_variable_set','@@crons',{})
-	AbstractRobot.add_cron :ping, 20
-	AbstractRobot.set_image_url ''
+    AbstractRobot.add_cron :ping, 20
+    AbstractRobot.set_image_url ''
     AbstractRobot.set_profile_url ''	
     expected = (
         "<?xml version=\"1.0\"?>\n" +
         "<w:robot xmlns:w=\"http://wave.google.com/extensions/robots/1.0\">\n" +
+        "<w:version>1</w:version>\n" +
         "<w:capabilities>\n" +
      #   "  <w:capability name=\"myevent\"/>\n" +
         "</w:capabilities>\n" +
@@ -116,3 +119,4 @@ class TestGetCapabilitiesXml < Test::Unit::TestCase
     self.assertStringsEqual(expected, xml)
   end
 end
+

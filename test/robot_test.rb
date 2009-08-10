@@ -8,11 +8,12 @@ class Robot < AbstractRobot
   
   add_cron :clock, 20
   
-  def DOCUMENT_CHANGED(properties, context)
+  def document_changed(properties, context)
     wavelet = context.GetWavelets()[0]
     blip = context.GetBlipById(wavelet.GetRootBlipId())
     blip.GetDocument().SetText('Only I get to edit the top blip!')
   end
+  
   def clock(event, context)
     wavelet = context.GetWavelets()[0]
     blip = context.GetBlipById(wavelet.GetRootBlipId())
@@ -44,8 +45,9 @@ class TestCapabilities < Test::Unit::TestCase
     expected = (
         "<?xml version=\"1.0\"?>\n" +
         "<w:robot xmlns:w=\"http://wave.google.com/extensions/robots/1.0\">\n" +
+        "<w:version>1</w:version>\n" +
         "<w:capabilities>\n" +
-        '  <w:capability name="DOCUMENT_CHANGED"/>' + "\n" +
+        '  <w:capability name="document_changed" content="true"/>' + "\n" +
         "</w:capabilities>\n" +
         "<w:crons>\n  <w:cron path=\"/_wave/robot/clock\" timerinseconds=\"20\"/>\n</w:crons>\n" +
         "<w:profile name=\"Testy\"" +
